@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fener Ekspres</title>
+<meta name="description" content="Fenerbahçe haberleri: her sabah 07.00 bülteni ve gün içi gelişmeler.">
+<meta name="theme-color" content="#0A1230">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,700;0,800;1,900&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--zemin:#F5F6F9;--yuzey:#FFFFFF;--cizgi:#E3E6ED;--metin:#101728;--soluk:#5F6880;--lacivert:#0A1230;--altin:#FFD60A;--altinMetin:#8A6D00;
+  --yesil:#1E9E5A;--rozet:#EEF1F7;--vurgu:#1F3E91;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--zemin:#070B17;--yuzey:#0F1628;--cizgi:#212B45;--metin:#E7EBF4;--soluk:#8E99B3;
+  --altinMetin:#FFD60A;--yesil:#3FCB86;--rozet:#18223B;--vurgu:#9DB4FF;color-scheme:dark}}
+:root[data-theme="dark"]{--zemin:#070B17;--yuzey:#0F1628;--cizgi:#212B45;--metin:#E7EBF4;--soluk:#8E99B3;--altinMetin:#FFD60A;--yesil:#3FCB86;--rozet:#18223B;--vurgu:#9DB4FF;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--zemin);color:var(--metin);font:16px/1.6 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--vurgu)}
+:focus-visible{outline:2px solid var(--altin);outline-offset:2px}
+header{background:var(--lacivert);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 36px) 16px 30px;border-bottom:5px solid #22B564}
+.kap{max-width:760px;margin:0 auto}
+.wordmark{font:italic 900 clamp(38px,9vw,60px)/.95 'Archivo',sans-serif;letter-spacing:-.03em;color:var(--altin);margin:0}
+.slogan{margin:12px 0 18px;color:#C9D3EC;font-size:15.5px;max-width:52ch}
+.kanallar{display:flex;flex-wrap:wrap;gap:8px}
+.kanallar a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+.kanallar a:hover{background:rgba(255,255,255,.16)}
+main{padding:8px 16px 64px}
+.gun{padding-top:30px}
+.gun>h2{font:800 14px/1 'Archivo',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--soluk);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.gun>h2::after{content:'';flex:1;height:1px;background:var(--cizgi)}
+.grup{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:18px 0 10px;flex-wrap:wrap}
+.grup h3{font:700 17px/1.3 'Archivo',sans-serif;margin:0}
+.grup .baglar{display:flex;gap:12px;font-size:14px;font-weight:600}
+.liste{display:flex;flex-direction:column;gap:12px}
+article{background:var(--yuzey);border:1px solid var(--cizgi);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+article img{width:100%;height:auto;display:block;border-radius:10px;margin-bottom:4px;background:var(--rozet)}
+.bolum{align-self:flex-start;font:700 11.5px/1 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--altinMetin);background:var(--rozet);padding:5px 8px;border-radius:6px}
+article h4{font:700 20px/1.3 'Archivo',sans-serif;margin:0;text-wrap:balance}
+article p{margin:0;color:var(--metin)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;color:var(--soluk);font-size:13.5px}
+.meta a{font-weight:600}
+.daha{display:block;margin:32px auto 0;padding:12px 22px;border-radius:999px;border:1px solid var(--cizgi);background:var(--yuzey);color:var(--metin);font:600 15px 'Inter',sans-serif;cursor:pointer}
+footer{color:var(--soluk);font-size:13px;text-align:center;padding:0 16px 40px}
+footer a{color:var(--soluk)}
+.bos{color:var(--soluk);padding:40px 0;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="kap">
+  <h1 class="wordmark">FENER EKSPRES</h1>
+  <p class="slogan" id="slogan">Fenerbahçe haberleri: her sabah 07.00 bülteni, gün içinde gelişmeler.</p>
+  <nav class="kanallar" id="kanallar" aria-label="Kanallar"></nav>
+</div></header>
+<main class="kap" id="akis"><p class="bos">Haberler yükleniyor…</p></main>
+<footer class="kap" id="alt"></footer>
+<script>
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const gunAd = (g) => new Date(g + 'T12:00:00+03:00').toLocaleDateString('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'long', weekday: 'long' });
+const saat = (iso) => iso ? new Date(iso).toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' }) : '';
+const BOLUM = { 'MANŞET': 'Manşet', 'MAÇ': 'Maç', 'TRANSFER': 'Transfer', 'YÖNETİM': 'Yönetim', 'RESMİ': 'Resmî', 'GÜNDEM': 'Gündem', 'TARAFTAR NABZI': 'Taraftar' };
+let V = null, gosterilen = 7;
+function haber({ b, m, bl, ks, u, g, z, etiket }) {
+  return `<article>${g ? `<img src="${esc(g)}" alt="${esc(b)}" loading="lazy">` : ''}
+    ${bl || etiket ? `<span class="bolum">${esc(etiket || BOLUM[bl] || bl)}</span>` : ''}
+    ${b ? `<h4>${esc(b)}</h4>` : ''}${m ? `<p>${esc(m)}</p>` : ''}
+    <div class="meta">${z ? `<span>${esc(saat(z))}</span>` : ''}${ks?.length ? `<span>${esc(ks.join(' · '))}</span>` : ''}${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">X'te gör</a>` : ''}</div></article>`;
+}
+function ciz() {
+  const gunler = V.gunler.slice(0, gosterilen);
+  document.getElementById('akis').innerHTML = gunler.map(d => `<section class="gun"><h2>${esc(gunAd(d.g))}</h2>
+    ${d.x.length ? `<div class="grup"><h3>Gün içinde</h3></div><div class="liste">${d.x.map(x => haber({ ...x, etiket: 'Son gelişme' })).join('')}</div>` : ''}
+    ${d.bulten.length ? `<div class="grup"><h3>Sabah bülteni</h3><div class="baglar">${d.yt?.u ? `<a href="${esc(d.yt.u)}" target="_blank" rel="noopener">YouTube'da izle</a>` : ''}${d.ig?.u ? `<a href="${esc(d.ig.u)}" target="_blank" rel="noopener">Instagram'da gör</a>` : ''}</div></div>
+      <div class="liste">${d.bulten.map(haber).join('')}</div>` : ''}
+    ${d.yorum.length ? `<div class="grup"><h3>Yorum ve Panorama</h3></div><div class="liste">${d.yorum.map(y => haber({ ...y, etiket: y.ur === 'panorama' ? 'Panorama' : 'Yorum' })).join('')}</div>` : ''}
+  </section>`).join('') + (V.gunler.length > gosterilen ? '<button class="daha" id="daha" type="button">Önceki günler</button>' : '');
+  const d = document.getElementById('daha'); if (d) d.onclick = () => { gosterilen += 7; ciz(); };
+}
+fetch('veri/yayin.json', { cache: 'no-cache' }).then(r => r.json()).then(v => {
+  V = v;
+  if (v.marka?.slogan) document.getElementById('slogan').textContent = v.marka.slogan;
+  const k = v.marka?.kanallar || {};
+  document.getElementById('kanallar').innerHTML = ['youtube', 'instagram', 'x'].filter(n => k[n]?.url)
+    .map(n => `<a href="${esc(k[n].url)}" target="_blank" rel="noopener">${esc(k[n].ad)} · ${esc(k[n].handle)}</a>`).join('');
+  document.getElementById('alt').innerHTML = `Son güncelleme ${esc(new Date(v.guncellendi).toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }))}`;
+  ciz();
+}).catch(() => { document.getElementById('akis').innerHTML = '<p class="bos">Haberler yüklenemedi. Sayfayı yenileyin.</p>'; });
+</script>
+</body>
+</html>
