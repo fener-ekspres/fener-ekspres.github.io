@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaizen · Fener Ekspres</title>
+<meta name="description" content="Fener Ekspres günlük bülteninin kendi kendine iyileştirme koşuları: ne değişti, neden, önce/sonra.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A1230">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,700;0,800;1,900&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--zemin:#F5F6F9;--yuzey:#FFFFFF;--cizgi:#E3E6ED;--metin:#101728;--soluk:#5F6880;--lacivert:#0A1230;--altin:#FFD60A;--altinMetin:#8A6D00;
+  --yesil:#1E9E5A;--kirmizi:#C8322B;--rozet:#EEF1F7;--vurgu:#1F3E91;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--zemin:#070B17;--yuzey:#0F1628;--cizgi:#212B45;--metin:#E7EBF4;--soluk:#8E99B3;
+  --altinMetin:#FFD60A;--yesil:#3FCB86;--kirmizi:#FF7B72;--rozet:#18223B;--vurgu:#9DB4FF;color-scheme:dark}}
+:root[data-theme="dark"]{--zemin:#070B17;--yuzey:#0F1628;--cizgi:#212B45;--metin:#E7EBF4;--soluk:#8E99B3;--altinMetin:#FFD60A;--yesil:#3FCB86;--kirmizi:#FF7B72;--rozet:#18223B;--vurgu:#9DB4FF;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--zemin);color:var(--metin);font:16px/1.55 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--vurgu)}
+header{background:var(--lacivert);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 28px) 16px 24px;border-bottom:5px solid #22B564}
+.kap{max-width:760px;margin:0 auto}
+.ust{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wordmark{font:italic 900 clamp(22px,5vw,30px)/1 'Archivo',sans-serif;letter-spacing:-.03em;color:var(--altin);margin:0;text-decoration:none}
+.ust a.geri{color:#C9D3EC;font-size:14px;font-weight:600;text-decoration:none}
+h1{display:flex;align-items:center;gap:10px;font:800 clamp(26px,6vw,36px)/1.1 'Archivo',sans-serif;margin:18px 0 6px;color:#fff}
+h1 svg{color:var(--altin)}
+.slogan{margin:0;color:#C9D3EC;font-size:15px;max-width:60ch}
+main{padding:8px 16px 64px}
+.kosu{padding-top:30px}
+.kosu>h2{font:800 14px/1 'Archivo',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--soluk);margin:0 0 6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.kosu>h2::after{content:'';flex:1;height:1px;background:var(--cizgi)}
+.durum{font:600 12px/1 'Inter',sans-serif;padding:4px 8px;border-radius:6px;background:var(--rozet);color:var(--soluk);text-transform:none;letter-spacing:0}
+.durum.ok{color:var(--yesil)}.durum.incomplete,.durum.failed{color:var(--kirmizi)}.durum.prova{color:var(--altinMetin)}
+.bilgi{color:var(--soluk);font-size:13px;margin:0 0 14px}
+.liste{display:flex;flex-direction:column;gap:12px}
+article{background:var(--yuzey);border:1px solid var(--cizgi);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.rozet{align-self:flex-start;font:700 11.5px/1 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--altinMetin);background:var(--rozet);padding:5px 8px;border-radius:6px}
+article h3{font:700 20px/1.3 'Archivo',sans-serif;margin:0;text-wrap:balance}
+article p{margin:0}
+article img{width:100%;height:auto;display:block;border-radius:10px;background:var(--rozet);border:1px solid var(--cizgi)}
+.duz{background:var(--rozet);border-radius:10px;padding:12px 14px;font-size:14.5px;display:grid;gap:4px}
+.duz b{color:var(--soluk);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;color:var(--soluk);font-size:13px;align-items:center}
+.geri-al{margin-left:auto;padding:7px 12px;border-radius:999px;border:1px solid var(--cizgi);background:var(--yuzey);color:var(--metin);font:600 13px 'Inter',sans-serif;text-decoration:none}
+.geri-al:hover{border-color:var(--kirmizi);color:var(--kirmizi)}
+.geri-alindi{color:var(--kirmizi);font-weight:600}
+.notlar{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:6px;font-size:14.5px}
+.notlar li::before{content:'●';margin-right:8px;color:var(--yesil)}.notlar li.bad::before{color:var(--kirmizi)}
+.dusen{color:var(--soluk);font-size:14px;margin:10px 0 0}
+.bos{color:var(--soluk);padding:40px 0;text-align:center}
+.daha{display:block;margin:32px auto 0;padding:12px 22px;border-radius:999px;border:1px solid var(--cizgi);background:var(--yuzey);color:var(--metin);font:600 15px 'Inter',sans-serif;cursor:pointer}
+footer{color:var(--soluk);font-size:13px;text-align:center;padding:0 16px 40px}
+</style>
+</head>
+<body>
+<header><div class="kap">
+  <div class="ust"><a class="wordmark" href="../">FENER EKSPRES</a><a class="geri" href="../">← Haberler</a></div>
+  <h1><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="40 17" stroke-linecap="round" transform="rotate(-60 12 12)"/><path d="M8 14l3-3 2 2 3.5-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 9h2v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Kaizen</h1>
+  <p class="slogan">Günde bir video: gece 01:00'de o video baştan sona kare kare incelenir, yol haritası çıkar; 03:00 ve 05:00'te uygulanır. Ne değişti, neden, önce ve sonra. Beğenmediğini geri al.</p>
+</div></header>
+<main class="kap" id="akis"><p class="bos">Koşular yükleniyor…</p></main>
+<footer class="kap" id="alt"></footer>
+<script>
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const MASA = { editor: 'Editör', dil: 'Dil', baslik: 'Başlık', video: 'Video', tasarim: 'Tasarım', kapak: 'Kapak', mimari: 'Mimari' };
+const DURUM = { ok: 'yayında', incomplete: 'eksik', prova: 'prova (yayınlanmadı)', failed: 'başarısız', analiz: 'analiz (kare kare inceleme)' };
+const kosuAd = (r) => { const d = new Date(r.slice(0, 10) + 'T12:00:00+03:00').toLocaleDateString('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'long', weekday: 'long' }); const h = r.slice(11, 13); return h ? `${d} · ${h}:00 koşusu` : d; };
+const saat = (iso) => iso ? new Date(iso).toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' }) : '';
+const tok = (n) => n >= 1e6 ? (n / 1e6).toFixed(2).replace('.', ',') + ' M' : Math.round(n / 1e3) + ' bin';
+let V = null, gosterilen = 5;
+const YAPILMADI = /^(atland|yapılmad|derin kontrol yapılmad|yapilmad)/i;
+const MASALAR = ['editor', 'dil', 'baslik', 'video', 'tasarim', 'kapak', 'mimari'];
+const gunTR = (g) => new Date(g + 'T12:00:00+03:00').toLocaleDateString('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'long', weekday: 'long' });
+function gunOzetleri() {
+  const g = {};
+  // Gece koşuları (00–06) bir önceki günün videosunu inceler: 13.11 01:00 analizi "12 Kasım" kartına girer (13.11 — gece düzeni)
+  const videoGunu = (r) => { const d = r.slice(0, 10); if (Number(r.slice(11, 13) || 12) > 6) return d; const x = new Date(d + 'T12:00:00Z'); x.setUTCDate(x.getUTCDate() - 1); return x.toISOString().slice(0, 10); };
+  for (const k of V.kosular) { const d = videoGunu(k.run_id); (g[d] ||= []).push(k); }
+  const sh = {}; for (const x of (V.shorts || [])) sh[x.gun] = x;
+  const gunler = [...new Set([...Object.keys(g), ...Object.keys(sh)])].sort().reverse().slice(0, 7);
+  return gunler.map(d => {
+    const ks = g[d] || [], derin = {}, ana = ks.flatMap(k => (k.deepChecks && k.deepChecks.length) ? k.deepChecks : (k.deepCheck && k.deepCheck.desk ? [k.deepCheck] : []));
+    for (const c of ana) { const yap = !YAPILMADI.test(String(c.on || '')); derin[c.desk] = { yap: (derin[c.desk]?.yap || yap), bulgu: (derin[c.desk]?.bulgu || 0) + (yap ? (c.found || 0) : 0), konu: yap ? c.on : (derin[c.desk]?.konu || c.on) }; }
+    const degisen = ks.flatMap(k => (k.changes || []).map(c => ({ r: k.run_id, c })));
+    const tok = ks.reduce((a, k) => a + ((k.run || {}).tokens || 0), 0);
+    const yol = ks.flatMap(k => k.yolHaritasi || []);
+    return { d, ks, derin, degisen, tok, yol, sh: sh[d] };
+  });
+}
+function gunKart(o) {
+  const v = o.sh, vid = o.derin.video, tas = o.derin.tasarim, kap = o.derin.kapak;
+  const rozet = (ad, ok, ek) => `<span class="durum ${ok ? 'ok' : 'failed'}" title="${esc(ek || '')}">${ok ? '✓' : '✗'} ${esc(ad)}</span>`;
+  const izl = v ? `<p class="bilgi"><b>Videosu:</b> ${esc(v.baslik)} — <b>${v.izlenme == null ? 'ölçülmedi' : Number(v.izlenme).toLocaleString('tr-TR') + ' izlenme'}</b></p>` : '<p class="bilgi">Bu günün videosu ölçüm listesinde yok.</p>';
+  const masalar = MASALAR.map(m => { const x = o.derin[m]; return rozet(MASA[m], !!(x && x.yap), x ? (x.yap ? `bakıldı: ${x.konu} · ${x.bulgu} bulgu` : `atlandı: ${x.konu}`) : 'bu gün sıra gelmedi'); }).join(' ');
+  return `<section class="kosu"><h2>${esc(gunTR(o.d))}<span class="durum">${o.ks.length} koşu · ${tok(o.tok)} token</span></h2>
+    ${izl}
+    <p class="bilgi"><b>Video kare kare izlendi mi?</b> ${vid && vid.yap ? `Evet — ${esc(vid.konu)} (${vid.bulgu} bulgu)` : vid ? 'Hayır — sırası geldi ama atlandı (' + esc(vid.konu) + ')' : 'Hayır — bu gün sırası gelmedi'}
+      ${tas && tas.yap ? ' · Kart PNG\'leri incelendi' : ''}${kap && kap.yap ? ' · Kapaklar incelendi' : ''}</p>
+    <p class="bilgi"><b>Hangi açılardan derin bakıldı:</b> ${masalar}</p>
+    ${o.yol.length ? `<p class="bilgi"><b>Yol haritası (gece 01:00 analizi):</b></p><ul class="notlar">${o.yol.map(y => `<li>${y.slot}:00 · ${esc(MASA[y.masa] || y.masa)} · ${esc(y.title)}</li>`).join('')}</ul>` : ''}
+    <p class="bilgi"><b>Geliştirilenler (${o.degisen.length}):</b>${o.degisen.length ? '' : ' bu gün yayına giren değişiklik yok.'}</p>
+    ${o.degisen.length ? `<ul class="notlar">${o.degisen.map(x => `<li>${esc(MASA[x.c.desk] || x.c.desk)} · ${esc(x.c.title)}${x.c.revertedOn ? ' <span class="geri-alindi">(geri alındı)</span>' : ''}</li>`).join('')}</ul>` : ''}
+  </section>`;
+}
+function degisiklik(r, c) {
+  const geri = c.revertedOn ? `<span class="geri-alindi">Geri alındı · ${esc(c.revertedOn)}</span>`
+    : `<a class="geri-al" target="_blank" rel="noopener" href="${esc(V.geriAl)}?labels=masa-komut&title=${encodeURIComponent('MASA: kaizen-geri-al ' + r + ' ' + c.n)}&body=${encodeURIComponent('Kaizen ' + r + ' #' + c.n + ' — ' + c.title + '\n\nBu istek kapandığında değişiklik geri alınmış olur (en geç 2 dakika).')}">Geri Al</a>`;
+  return `<article>
+    <span class="rozet">${esc(MASA[c.desk] || c.desk)}${c.survived7d === true ? ' · 7 gün tuttu' : c.survived7d === false ? ' · tutmadı' : ''}</span>
+    <h3>${esc(c.title)}</h3><p>${esc(c.why)}</p>
+    ${c.sheet ? `<img src="../${esc(c.sheet)}" alt="Önce ve sonra: ${esc(c.title)}" loading="lazy">` : ''}
+    ${c.codeOnly && c.plain ? `<div class="duz"><span><b>Önce:</b> ${esc(c.plain.was)}</span><span><b>Şimdi:</b> ${esc(c.plain.now)}</span>${c.plain.where ? `<span><b>Nerede:</b> ${esc(c.plain.where)}</span>` : ''}</div>` : ''}
+    ${c.metric ? `<p class="bilgi">${esc(c.metric.name)}: ${esc(c.metric.before)} → ${esc(c.metric.after)}</p>` : ''}
+    <div class="meta"><span>${esc((c.files || []).join(' · '))}</span>${geri}</div>
+  </article>`;
+}
+function ciz() {
+  const ozet = `<section class="kosu"><h2 style="font-size:18px;color:var(--metin)">Günlük özet<span class="durum">son 7 gün</span></h2></section>` + gunOzetleri().map(gunKart).join('')
+    + `<section class="kosu"><h2 style="font-size:18px;color:var(--metin)">Koşu koşu ayrıntı<span class="durum">son ${Math.min(gosterilen, V.kosular.length)} koşu</span></h2></section>`;
+  const kosular = V.kosular.slice(0, gosterilen);
+  document.getElementById('akis').innerHTML = ozet + (kosular.length ? kosular.map(k => {
+    const run = k.run || {}; const bilgi = run.startedAt ? `${saat(run.startedAt)}–${saat(run.endedAt)} · ${run.minutes} dk · ${tok(run.tokens || 0)} token${run.budget ? ` / ${tok(run.budget)}` : ''}` : '';
+    return `<section class="kosu"><h2>${esc(kosuAd(k.run_id))}<span class="durum ${esc(k.status)}">${esc(DURUM[k.status] || k.status)}</span></h2>
+    <p class="bilgi">${esc(bilgi)}${k.deepCheck ? ` · derin bakış: ${esc(MASA[k.deepCheck.desk] || k.deepCheck.desk)} (${esc(k.deepCheck.on || '')}, ${esc(k.deepCheck.found ?? 0)} bulgu)` : ''}${Number.isFinite(k.openFindings) ? ` · açık bulgu ${esc(k.openFindings)}` : ''}</p>
+    ${k.statusNote ? `<p class="dusen">${esc(k.statusNote)}</p>` : ''}
+    <div class="liste">${(k.changes || []).map(c => degisiklik(k.run_id, c)).join('') || '<p class="bos">Bu koşuda yayına giren değişiklik yok.</p>'}</div>
+    ${(k.dropped || []).length ? `<p class="dusen">Düşen: ${k.dropped.map(d => `${esc(d.title)} — ${esc(d.reason)}`).join(' · ')}</p>` : ''}
+    ${(k.notes || []).length ? `<ul class="notlar">${k.notes.map(n => `<li class="${esc(n.tone)}">${esc(n.text)}</li>`).join('')}</ul>` : ''}
+  </section>`; }).join('') : '<p class="bos">Henüz koşu yok. İlk koşu gece 01:00\'de başlar.</p>')
+    + (V.kosular.length > gosterilen ? '<button class="daha" id="daha" type="button">Önceki koşular</button>' : '');
+  document.getElementById('daha')?.addEventListener('click', () => { gosterilen += 5; ciz(); });
+}
+fetch('../veri/kaizen.json', { cache: 'no-store' }).then(r => r.json()).then(v => {
+  V = v; ciz();
+  document.getElementById('alt').innerHTML = `Son güncelleme ${esc(new Date(v.guncellendi).toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }))} · ${esc(v.kosular.length)} koşu`;
+}).catch(() => { document.getElementById('akis').innerHTML = '<p class="bos">Koşular yüklenemedi. Sayfayı yenileyin.</p>'; });
+</script>
+</body>
+</html>
